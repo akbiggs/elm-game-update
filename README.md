@@ -31,10 +31,7 @@ update msg model =
         Jump ->
             Update.returnAlive
                 { model | velocity = { model.velocity | y = 2.0 } }
-                |> Effects.add
-                    [ SpawnDustParticles
-                    , PlaySound "jump.wav"
-                    ]
+                |> Effects.add [ SpawnDustParticles, PlaySound "jump.wav" ]
 
         TakeDamage ->
             Update.returnDead

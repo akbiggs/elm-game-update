@@ -5,6 +5,7 @@ module Game.Update
         , returnAlive
         , returnMaybe
         , returnDead
+        , fromEffects
         , runOnMaybe
         , runIf
         , andThen
@@ -23,7 +24,7 @@ the death state as `Nothing`.
 
 # Constructors
 
-@docs returnAlive, returnMaybe, returnDead
+@docs returnAlive, returnMaybe, returnDead, fromEffects
 
 # Running Updates
 
@@ -92,6 +93,14 @@ returnMaybe maybeX =
 returnDead : Result a effect
 returnDead =
     Effects.return Nothing
+
+
+{-| Takes an `Effects` object and converts it to an update result,
+reporting that the value is alive.
+-}
+fromEffects : Effects a effect -> Result a effect
+fromEffects ( x, effects ) =
+    ( Just x, effects )
 
 
 
